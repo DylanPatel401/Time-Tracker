@@ -6,7 +6,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeScreen from './screens/home';
 import MainScreen from './screens/main';
-import QuickStartScreen from './screens/tasks';
+import NewTaskScreen from './screens/new_task';
+import NewActivityScreen from './screens/new_activity';
 
 const Stack = createStackNavigator();
 
@@ -16,8 +17,9 @@ export default function App() {
       <Stack.Navigator>
         
         <Stack.Screen name="Home" component={HomeScreen}   options={{headerShown: false}}/>
-        <Stack.Screen name="Quick_Start" component={QuickStartScreen}   options={{headerShown: false}}/>
+        <Stack.Screen name="NewTaskScreen" component={NewTaskScreen}   options={{headerShown: false}}/>
 
+        <Stack.Screen name="NewActivityScreen" component={NewActivityScreen}   options={{headerShown: true}}/>
 
 
       </Stack.Navigator>

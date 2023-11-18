@@ -1,13 +1,16 @@
-import { TouchableOpacity, Text, View, StyleSheet, TouchableHighlight, StatusBar } from 'react-native';
+import { TouchableOpacity, Text, View, StyleSheet, TouchableHighlight, StatusBar, ScrollView} from 'react-native';
 import React, { useState } from 'react';
 
 import {normalStyle, barHeight} from '../styles/style';
-import { CustomHeader } from '../styles/custom';
+import { CustomHeader, SmallHeader} from '../styles/custom';
+
+import { fetchData } from '../functions/api';
 
 export default function MainScreen({navigation}) {
   
   const [dayIndex, setDayIndex] = useState(0);
 
+  
   const onDayPress = (num) => {
     setDayIndex(num)
   }
@@ -40,6 +43,88 @@ export default function MainScreen({navigation}) {
     );
   }
 
+  const Activity = () => {
+    const activityList = ["Homework", "Workout", "Shopping", "Reading"];
+
+    let activityElement = [];
+  
+    activityList.forEach((act, index) => {
+        activityElement.push(
+            <TouchableHighlight onPress={() => {console.log("Activity Press")}} key={index}               underlayColor="transparent"            >
+                <View style={[normalStyle.button, {margin: 5}]} key={index}>
+                    <Text style={normalStyle.text} key={index}>
+                        {act}
+                    </Text>            
+                </View>
+            </TouchableHighlight>
+        );
+    });
+
+    return(
+      <View style={{flex:3, margin:barHeight/2}}>
+        <View style={{flex:1}}>
+          <SmallHeader
+            title={'Activity'}
+            icon_name={'plussquare'}
+            onPress={() => {navigation.navigate('NewActivityScreen')}}
+          />          
+        </View>
+
+        <View style={{flex:2}}>
+          <ScrollView style={normalStyle.card} horizontal={true}>
+            {activityElement}            
+          </ScrollView>          
+        </View>
+
+
+      </View>
+
+    );
+  }
+
+  const Tasks = () => {
+    const tasksList = ["Webwork", "Chest & Tri", "Get Milk"];
+
+    let tasksElement = [];
+  
+    tasksList.forEach((act, index) => {
+      tasksElement.push(
+            <TouchableHighlight 
+              onPress={() => {console.log('Task Press')}} 
+              key={index}             
+              underlayColor="transparent"
+            >
+                <View style={[normalStyle.button, {margin: 5}]} key={index}>
+                    <Text style={normalStyle.text} key={index}>
+                        {act}
+                    </Text>            
+                </View>
+            </TouchableHighlight>
+        );
+    });
+
+    return(
+      <View style={{flex:3,margin:barHeight/2}}>
+        <View style={{flex:1}}>
+          <SmallHeader
+            title={'Tasks'}
+            icon_name={'plussquare'}
+            onPress={() => {navigation.navigate('NewTaskScreen')}}
+          />          
+        </View>
+
+        <View style={{flex:2}}>
+          <ScrollView style={normalStyle.card} horizontal={true}>
+            {tasksElement}            
+          </ScrollView>          
+        </View>
+
+
+      </View>
+
+    );
+  }
+
   return (
     
     <View style={{ flex:1 }}>
@@ -48,28 +133,13 @@ export default function MainScreen({navigation}) {
       <CustomHeader 
         title = "November" 
         icon_name = "calendar"
-        onPress = {() => {console.log("click")}}
+        onPress = {() => {console.log("click on calander")}}
       />        
 
       <DaysRow/>
 
-      <View style={[normalStyle.mediumTitle, {flex:6, borderWidth:2, margin: barHeight}]}>
-        <Text style={{fontSize: barHeight*1.25, fontWeight: 'bold', }}>
-          Tasks:
-        </Text>
-      </View>
-
-      <View style={{flex:1, flexDirection: 'row', margin: barHeight}}>
-        <TouchableHighlight
-          style={[normalStyle.button, {flex:1}]}
-          onPress={() => {navigation.navigate('Quick_Start')}}
-          underlayColor="transparent"
-        >
-          <Text style={normalStyle.buttonText}>
-              Create Task 
-          </Text>
-        </TouchableHighlight>       
-      </View>
+      <Activity/>
+      <Tasks/>
 
 
     </View>

@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import normalStyle from '../styles/style';
-import TasksScreen from './tasks';
+import NewTaskScreen from './new_task';
 import QuickStartScreen from './quick_start';
 import SettingsScreen from './settings';
 import MainScreen from './main';
@@ -18,7 +18,7 @@ const Tab = createBottomTabNavigator();
 
 const Settings = () => { return(<SettingsScreen/>) }
 const QuickStart = () => { return(<QuickStartScreen/>) }
-const Tasks = () => { return(<TasksScreen/>) }
+const Tasks = () => { return(<NewTaskScreen/>) }
 const Main = () => { return(<MainScreen/>)}
 
 export default function HomeScreen({navigation}) {

@@ -8,7 +8,7 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 var deviceHeight = Dimensions.get('window').height;
 var deviceWidth = Dimensions.get('window').width;
 
-export default function TasksScreen({navigation}) {
+export default function NewTaskScreen({navigation}) {
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const [description, setDescription] = useState('');
